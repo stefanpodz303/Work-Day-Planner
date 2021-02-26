@@ -28,6 +28,39 @@ $(document).ready(function () {
     $('#5PM').val(localStorage.getItem('5PM'));
 })
 
+var time = moment().format('hh');
 
+// variables to use for past, present, and future color coding
+var textNine = $('#9AM');
+var textTen = $('#10AM');
+var textEleven = $('#11AM');
+var textTwelve = $('#12PM');
+var textOne = $('#1PM');
+var textTwo = $('#2PM');
+var textThree = $('#3PM');
+var textFour = $('#4PM');
+var textFive = $('#5PM');
 
+var textArr = [textNine, textTen, textEleven, textTwelve, textOne, textTwo, textThree, textFour, textFive];
 
+var timeNine = moment('9', 'hh').format('hh');
+var timeTen = moment('10', 'hh').format('hh');
+var timeEleven = moment('11', 'hh').format('hh');
+var timeTwelve = moment('12', 'hh').format('hh');
+var timeOne = moment('13', 'hh').format('hh');
+var timeTwo = moment('14', 'hh').format('hh');
+var timeThree = moment('15', 'hh').format('hh');
+var timeFour = moment('16', 'hh').format('hh');
+var timeFive = moment('17', 'hh').format('hh');
+
+var timeArr = [timeNine, timeTen, timeEleven, timeTwelve, timeOne, timeTwo, timeThree, timeFour, timeFive]
+
+for (var i = 0; i < timeArr.length; i++) {
+    if (timeArr[i] === time){
+        textArr[i].addClass('present');
+    } else if (timeArr[i] < time) {
+        textArr[i].addClass('past');
+    } else {
+        timeArr[i].addClass('future');
+    }
+    }
