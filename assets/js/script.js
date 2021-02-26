@@ -1,18 +1,17 @@
 
 $(document).ready(function () {
-    // This function displays the current date and time
-    var today = moment();
-    $("#currentDay").text(today.format('MMMM Do YYYY, h:mm:ss a'));
-// //     function update() {
-// //     $('#currentDay’).html(today.format(‘dddd, MMMM Do YYYY, h:mm:ss a’))
-// // }
-//     setInterval(update,1000);
+    // This function displays the current date and time in real-time
+    $("#currentDay").html(moment().format('MMMM Do YYYY, h:mm:ss a'));
+    function update() {
+        $("#currentDay").html(moment().format('MMMM Do YYYY, h:mm:ss a'));
+    }
+    setInterval(update, 1000);
 
     // This function allows text to be saved to the text area and local storage
     $('.saveBtn').on('click', function () {
         var taskTime = $(this).siblings('.hour').text();
         var taskValue = $(this).siblings('.description').val();
-        
+
         console.log(taskValue, taskTime);
         localStorage.setItem(taskTime, taskValue);
     })
@@ -31,7 +30,7 @@ $(document).ready(function () {
 // moment variable to use for color coding time blocks
 var time = moment().format('kk');
 
-// variables to use for past, present, and future color coding
+// variables and arrays to use for past, present, and future color coding
 var textNine = document.getElementById('9AM');
 var textTen = document.getElementById('10AM');
 var textEleven = document.getElementById('11AM');
@@ -56,12 +55,13 @@ var timeFive = moment('17', 'kk').format('kk');
 
 var timeArr = [timeNine, timeTen, timeEleven, timeTwelve, timeOne, timeTwo, timeThree, timeFour, timeFive];
 
+// for loop to cycle through my arrays in order to display the color coding
 for (var i = 0; i < timeArr.length; i++) {
-    if (timeArr[i] === time){
+    if (timeArr[i] === time) {
         textArr[i].classList.add('present');
     } else if (timeArr[i] < time) {
         textArr[i].classList.add('past');
     } else {
         textArr[i].classList.add('future');
     }
-    }
+}
