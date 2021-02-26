@@ -1,6 +1,6 @@
 
 $(document).ready(function () {
-    // This code displays the current date and time
+    // This function displays the current date and time
     var today = moment();
     $("#currentDay").text(today.format('MMMM Do YYYY, h:mm:ss a'));
 // //     function update() {
@@ -28,39 +28,40 @@ $(document).ready(function () {
     $('#5PM').val(localStorage.getItem('5PM'));
 })
 
-var time = moment().format('hh');
+// moment variable to use for color coding time blocks
+var time = moment().format('kk');
 
 // variables to use for past, present, and future color coding
-var textNine = $('#9AM');
-var textTen = $('#10AM');
-var textEleven = $('#11AM');
-var textTwelve = $('#12PM');
-var textOne = $('#1PM');
-var textTwo = $('#2PM');
-var textThree = $('#3PM');
-var textFour = $('#4PM');
-var textFive = $('#5PM');
+var textNine = document.getElementById('9AM');
+var textTen = document.getElementById('10AM');
+var textEleven = document.getElementById('11AM');
+var textTwelve = document.getElementById('12PM');
+var textOne = document.getElementById('1PM');
+var textTwo = document.getElementById('2PM');
+var textThree = document.getElementById('3PM');
+var textFour = document.getElementById('4PM');
+var textFive = document.getElementById('5PM');
 
 var textArr = [textNine, textTen, textEleven, textTwelve, textOne, textTwo, textThree, textFour, textFive];
 
-var timeNine = moment('9', 'hh').format('hh');
-var timeTen = moment('10', 'hh').format('hh');
-var timeEleven = moment('11', 'hh').format('hh');
-var timeTwelve = moment('12', 'hh').format('hh');
-var timeOne = moment('13', 'hh').format('hh');
-var timeTwo = moment('14', 'hh').format('hh');
-var timeThree = moment('15', 'hh').format('hh');
-var timeFour = moment('16', 'hh').format('hh');
-var timeFive = moment('17', 'hh').format('hh');
+var timeNine = moment('9', 'kk').format('kk');
+var timeTen = moment('10', 'kk').format('kk');
+var timeEleven = moment('11', 'kk').format('kk');
+var timeTwelve = moment('12', 'kk').format('kk');
+var timeOne = moment('13', 'kk').format('kk');
+var timeTwo = moment('14', 'kk').format('kk');
+var timeThree = moment('15', 'kk').format('kk');
+var timeFour = moment('16', 'kk').format('kk');
+var timeFive = moment('17', 'kk').format('kk');
 
-var timeArr = [timeNine, timeTen, timeEleven, timeTwelve, timeOne, timeTwo, timeThree, timeFour, timeFive]
+var timeArr = [timeNine, timeTen, timeEleven, timeTwelve, timeOne, timeTwo, timeThree, timeFour, timeFive];
 
 for (var i = 0; i < timeArr.length; i++) {
     if (timeArr[i] === time){
-        textArr[i].addClass('present');
+        textArr[i].classList.add('present');
     } else if (timeArr[i] < time) {
-        textArr[i].addClass('past');
+        textArr[i].classList.add('past');
     } else {
-        timeArr[i].addClass('future');
+        textArr[i].classList.add('future');
     }
     }
